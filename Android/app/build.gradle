@@ -7,7 +7,7 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.samplestickerapp"
+        applicationId "com.krypton.project"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
@@ -22,6 +22,16 @@ android {
                 "CONTENT_PROVIDER_AUTHORITY",
                 "\"${contentProviderAuthority}\"")
     }
+	signingConfigs {
+		release {
+			// You need to specify either an absolute path or include the
+			// keystore file in the same directory as the build.gradle file.
+			storeFile file("my-release-key.jks")
+			storePassword "468213790"
+			keyAlias "my-alias"
+			keyPassword "468213790"
+			}
+			}
     buildTypes {
         debug {
             minifyEnabled false
@@ -30,6 +40,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
